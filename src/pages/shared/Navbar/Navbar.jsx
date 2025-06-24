@@ -17,7 +17,13 @@ const Navbar = () => {
     const navItems = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/coverage">Coverage</NavLink></li>
+        <li><NavLink to="/sendParcel">sendParcel</NavLink></li>
         <li><NavLink to="/about">About Us</NavLink></li>
+        {
+            user && <>
+            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -32,9 +38,9 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">
-                    <ProFastLogo></ProFastLogo>
-                </a>
+<div>
+    <ProFastLogo></ProFastLogo>
+</div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
