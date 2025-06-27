@@ -4,6 +4,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -15,6 +16,7 @@ const MyParcels = () => {
       return res.data;
     },
   });
+  const nevigate = useNavigate()
 
   console.log(parcels);
 
@@ -26,6 +28,7 @@ const MyParcels = () => {
   const handlePay = (id) => {
     console.log("Proceed to payment for", id);
     // Implement your payment logic
+    nevigate(`/dashboard/payment/${id}`)
   };
 
   const handleDelete = async (id) => {

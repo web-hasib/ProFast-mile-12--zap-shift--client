@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navg = useNavigate();
+  // console.log(location);
+  const from = location?.state?.from || '/'
+  const {signIn} = useAuth()
 
   const {
     register,
@@ -14,7 +21,15 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    signIn(data.email,data.password).then(res=>{
+
+      // console.log(res)
+      Swal.fire('login success')
+      navg(from)
+    }
+    )
+    .catch(err=>console.log(err))
   };
 
   return (
